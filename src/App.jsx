@@ -5,6 +5,7 @@ const About = lazy(() => import("./pages/About"));
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
+import Navbar from "./componats/Navbar";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -12,6 +13,7 @@ const App = () => {
       path: "/",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
           <Home />
         </Suspense>
       ),
@@ -20,6 +22,7 @@ const App = () => {
       path: "/about",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
           <About />
         </Suspense>
       ),
@@ -28,6 +31,7 @@ const App = () => {
       path: "/login",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
           <Login />
         </Suspense>
       ),
@@ -36,6 +40,7 @@ const App = () => {
       path: "/register",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
           <Register />
         </Suspense>
       ),

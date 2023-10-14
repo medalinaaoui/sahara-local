@@ -1,0 +1,45 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+/* Basic Input Style */
+input {
+  padding: 10px;
+  border: 1px solid #beadfa;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Input Focus Style */
+input:focus {
+  border-color: #007bff; /* Change the border color when the input is focused */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle box shadow */
+  outline: none; /* Remove the default blue outline on focus */
+}
+
+/* Placeholder Style */
+::placeholder {
+  color: #888;
+}
+
+/* Disabled Input Style */
+input:disabled {
+  background-color: #beadfa; /* A light gray background for disabled inputs */
+  cursor: not-allowed; /* Change the cursor to indicate it's disabled */
+}
+
+/* Error State Style */
+.input-error {
+  border-color: #ff5722; /* Change the border color to indicate an error */
+}
+
+/* Valid State Style */
+.input-valid {
+  border-color: #4caf50; /* Change the border color to indicate a valid input */
+}
+
+/* Customize as needed and add more styles for different states and effects. */
