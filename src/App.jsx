@@ -1,4 +1,51 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import React from "react";
+const About = lazy(() => import("./pages/About"));
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+
 const App = () => {
-  return <div className="bg-black text-white text-center">App</div>;
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Home />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/about",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <About />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/login",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Login />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/register",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Register />
+        </Suspense>
+      ),
+    },
+  ]);
+
+  return (
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  );
 };
 export default App;
