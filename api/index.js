@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 const app = express();
 dotenv.config();
+
+app.use(express.json());
 const connect = async () => {
   try {
     await mongoose.connect(process.env.DBURI);

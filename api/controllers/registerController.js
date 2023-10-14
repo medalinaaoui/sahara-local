@@ -1,0 +1,1 @@
+const registerController = (req, res) => {};
