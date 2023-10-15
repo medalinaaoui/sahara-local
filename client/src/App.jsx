@@ -31,7 +31,7 @@ const App = () => {
       path: "/login",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
-          <Navbar />
+          <Navbar login={true} />
           <Login />
         </Suspense>
       ),

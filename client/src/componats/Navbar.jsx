@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
-const Navbar = () => {
+const Navbar = ({ login }) => {
   return (
     <header className="flex justify-around items-center py-3 px-6 bg-[#849BA2]">
       <div className="flex items-center">
@@ -13,7 +13,7 @@ const Navbar = () => {
           placeholder="Search..."
           className="px-2 pl-8 h-8 w-full"
         />
-        <ImSearch className="absolute left-2 text-[#888]" />
+        <ImSearch className="absolute left-2 text-navColor" />
       </div>
 
       <nav className="flex items-center">
@@ -25,9 +25,15 @@ const Navbar = () => {
           <li>
             <Link to={"/"}>Home</Link>
           </li>
-          <li>
-            <Link to={"/register"}>Register</Link>
-          </li>
+          {login ? (
+            <li>
+              <Link to={"/register"}>Register</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to={"/login"}>Login</Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
