@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import customAxios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { loginStart, loginSuccess, loginFailure } from "../features/userSlice";
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { currUser, loading, error } = useSelector((state) => state.user);
 
   const [form, setForm] = useState({});
-  const [customError, setCustomError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -18,22 +20,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    dispatch(loginStart());
     if (!form.username || !form.password) {
-      setCustomError("please fill in the informations");
-      setLoading(false);
+      dispatch(loginFailure("please fill the info"));
     } else {
       try {
         const req = await customAxios.post("/login", form);
-        console.log(req.data);
-        setLoading(false);
+        console.log(req);
+        dispatch(loginSuccess(req.data.userInfo));
+        console.log({ currUser });
         navigate("/");
       } catch (error) {
         console.log("Error during registration:", error.response.data.success);
-        if (error.response.data.success === false) {
-          setCustomError(error.response.data.message);
-        }
-        setLoading(false);
+        dispatch(loginFailure(error.response.data.message));
       }
     }
   };
@@ -81,7 +80,7 @@ const Login = () => {
           </Link>
         </div>
         <div className="text-red-600 text-center">
-          {customError && <span>{customError.toString()}</span>}
+          {error && <span>{error.toString()}</span>}
         </div>
       </div>
     </div>
