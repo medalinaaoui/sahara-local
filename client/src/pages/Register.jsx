@@ -1,9 +1,37 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import customAxios from "../utils/axios";
 
 const Register = () => {
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({});
+  const [customError, setCustomError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submited");
+    setLoading(true);
+    if (!form.username || !form.email || !form.password) {
+      setCustomError("please fill in the informations");
+      setLoading(false);
+    } else {
+      try {
+        const req = await customAxios.post("/register", form);
+        console.log(req.data);
+        setLoading(false);
+      } catch (error) {
+        console.log("Error during registration:", error.response.data.success);
+        if (error.response.data.success === false) {
+          setCustomError(error.response.data.message);
+        }
+        setLoading(false);
+      }
+    }
   };
   return (
     <div className="h-screen flex justify-center items-center">
@@ -15,24 +43,35 @@ const Register = () => {
         >
           <input
             className="sm:py-2 py-1 px-1 w-1/3"
+            onChange={handleChange}
+            name="username"
             type="text"
             placeholder="username"
           />
           <input
             className="sm:py-2 py-1 px-1 w-1/3"
+            onChange={handleChange}
+            name="email"
             type="email"
             placeholder="email"
           />
           <input
             className="sm:py-2 py-1 px-1 w-1/3"
+            onChange={handleChange}
+            name="password"
             type="password"
             placeholder="password"
           />
           <button
             type="submit"
+            disabled={loading}
             className="btn btn-sm bg-navColor hover:bg-black border-none btn-primary w-1/3"
           >
-            Submit
+            {loading ? (
+              <span className="loading loading-spinner loading-sm"></span>
+            ) : (
+              "Submit"
+            )}
           </button>
           <button className="btn btn-sm border-none btn-primary w-1/3">
             Register with google
@@ -43,6 +82,9 @@ const Register = () => {
           <Link className="text-blue-600" to="/login">
             login
           </Link>
+        </div>
+        <div className="text-red-600 text-center">
+          {customError && <span>{customError.toString()}</span>}
         </div>
       </div>
     </div>

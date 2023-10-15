@@ -3,10 +3,16 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import registerRouter from "./routes/user/register.js";
 import errorHandling from "./middlwares/error.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
-
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    // Additional CORS options
+  })
+);
 app.use(express.json());
 app.use("/api/register", registerRouter);
 app.get("/hey", (req, res) => res.send("hey there!!"));
