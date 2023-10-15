@@ -1,11 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import registerRouter from "./routes/user/register.js";
+import errorHandling from "./middlwares/error.js";
 
 const app = express();
 dotenv.config();
 
 app.use(express.json());
+app.use("/api/register", registerRouter);
+app.get("/hey", (req, res) => res.send("hey there!!"));
+
+app.use(errorHandling);
 const connect = async () => {
   try {
     await mongoose.connect(process.env.DBURI);
