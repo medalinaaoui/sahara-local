@@ -14,6 +14,11 @@ const userScheme = mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    profile_pic: {
+      type: String,
+      default:
+        "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg",
+    },
     password: {
       type: String,
       required: true,
