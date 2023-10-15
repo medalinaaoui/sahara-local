@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import registerRouter from "./routes/user/register.js";
+import loginRouter from "./routes/user/login.js";
 import errorHandling from "./middlwares/error.js";
 import cors from "cors";
 
@@ -10,11 +11,11 @@ dotenv.config();
 app.use(
   cors({
     origin: "http://localhost:5173",
-    // Additional CORS options
   })
 );
 app.use(express.json());
 app.use("/api/register", registerRouter);
+app.use("/api/login", loginRouter);
 app.get("/hey", (req, res) => res.send("hey there!!"));
 
 app.use(errorHandling);

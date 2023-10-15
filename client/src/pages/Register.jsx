@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import customAxios from "../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({});
   const [customError, setCustomError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,8 +24,10 @@ const Register = () => {
     } else {
       try {
         const req = await customAxios.post("/register", form);
+
         console.log(req.data);
         setLoading(false);
+        navigate("/login");
       } catch (error) {
         console.log("Error during registration:", error.response.data.success);
         if (error.response.data.success === false) {
