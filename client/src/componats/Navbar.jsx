@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
+import { useSelector } from "react-redux";
 const Navbar = ({ login }) => {
+  const currUser = useSelector((state) => state.user.currUser);
   return (
     <header className="flex justify-around items-center py-3 px-6 bg-[#849BA2]">
       <div className="flex items-center">
@@ -25,7 +27,17 @@ const Navbar = ({ login }) => {
           <li>
             <Link to={"/"}>Home</Link>
           </li>
-          {login ? (
+          {currUser ? (
+            <li>
+              <Link to={"/profile"}>
+                <img
+                  src={currUser.profile_pic}
+                  alt="profile"
+                  className="h-7 aspect-square rounded-full"
+                />
+              </Link>
+            </li>
+          ) : login ? (
             <li>
               <Link to={"/register"}>Register</Link>
             </li>
