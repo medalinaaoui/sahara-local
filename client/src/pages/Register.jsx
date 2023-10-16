@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import customAxios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
+import Oauth from "../componats/Oauth";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -77,9 +78,7 @@ const Register = () => {
               "Submit"
             )}
           </button>
-          <button className="btn btn-sm border-none btn-primary w-1/3">
-            Register with google
-          </button>
+          <Oauth />
         </form>
         <div className="flex gap-4">
           <p>Already have an account?</p>{" "}

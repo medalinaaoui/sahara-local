@@ -4,6 +4,7 @@ import customAxios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import Oauth from "../componats/Oauth";
 import { loginStart, loginSuccess, loginFailure } from "../features/userSlice";
 const Login = () => {
   const navigate = useNavigate();
@@ -69,9 +70,7 @@ const Login = () => {
               "Submit"
             )}
           </button>
-          <button className="btn btn-sm border-none btn-primary w-1/3">
-            Login with google
-          </button>
+          <Oauth />
         </form>
         <div className="flex gap-4">
           <p>You don't have an account?</p>{" "}

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import registerRouter from "./routes/user/register.js";
 import loginRouter from "./routes/user/login.js";
+import signinWithGoogle from "./routes/user/withGoogle.js";
 import errorHandling from "./middlwares/error.js";
 import cors from "cors";
 
@@ -16,6 +17,7 @@ app.use(
 app.use(express.json());
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/signin-with-google", signinWithGoogle);
 app.get("/hey", (req, res) => res.send("hey there!!"));
 
 app.use(errorHandling);
