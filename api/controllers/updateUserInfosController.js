@@ -3,7 +3,7 @@ import User from "../model/user.js";
 
 const updateUserInfosController = async (req, res, next) => {
   const userId = req.params.id;
-  const { username, email, profile_pic } = req.body.formData;
+  const { username, email, profile_pic } = req.body;
 
   if (userId !== req.user) return next(errorHandler(401, "unathorized"));
   try {

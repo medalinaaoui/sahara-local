@@ -7,15 +7,13 @@ import signinWithGoogle from "./routes/user/withGoogle.js";
 import userInfosRouter from "./routes/user/userInfos.js";
 import errorHandling from "./middlwares/error.js";
 import cookieParser from "cookie-parser";
+import corsOptions from "./config/corsOptions.js";
 import cors from "cors";
 
 const app = express();
 dotenv.config();
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/register", registerRouter);

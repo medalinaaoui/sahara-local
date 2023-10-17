@@ -13,7 +13,6 @@ const verifyAccess = (req, res, next) => {
       }
       return res.status(401).json({ message: "Invalid token" });
     }
-    // If everything is fine, store the decoded user information in the request
     req.user = decoded.id;
     next();
   });

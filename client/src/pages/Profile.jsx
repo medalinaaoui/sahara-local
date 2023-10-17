@@ -8,13 +8,22 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../firebase";
+import customAxios from "../utils/axios";
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+} from "../features/userSlice";
+import { useDispatch } from "react-redux";
 const Profile = () => {
+  const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.currUser);
   const [loading, setLoading] = useState(false);
   const [file, setfile] = useState(undefined);
   const [uploadPer, setUploadPer] = useState(0);
   const [formData, setformData] = useState({});
   const [fileUploadError, setFileUploadError] = useState(false);
+  const [showMessage, setShowMessage] = useState("");
   const fileInputRef = useRef(null);
 
   const handleInfosChange = (e) => {
@@ -52,11 +61,25 @@ const Profile = () => {
     if (file) handleFileUpload(file);
   }, [file]);
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    if (!formData.username || !formData.email)
-      console.log("infos are required");
+    dispatch(updateStart());
+
+    try {
+      if (!formData.username || !formData.email) {
+        setShowMessage("infos are required");
+      } else {
+        const req = await customAxios.post(
+          `/user/updateUser/${currUser._id}`,
+          formData
+        );
+        dispatch(updateSuccess(req.data));
+        console.log("response from req in handleUpdate: ", req.data);
+      }
+    } catch (error) {
+      console.log("Error during updating user:", error);
+      dispatch(updateFailure(error.response.data.message));
+    }
   };
 
   return (
@@ -73,7 +96,7 @@ const Profile = () => {
         <img
           src={formData.profile_pic || currUser.profile_pic}
           alt="profile pic"
-          className="object-contain rounded-full"
+          className="w-full h-full rounded-full"
         />
         <FaCloudUploadAlt
           onClick={() => fileInputRef.current.click()}
