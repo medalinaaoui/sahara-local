@@ -9,6 +9,7 @@ import errorHandling from "./middlwares/error.js";
 import cookieParser from "cookie-parser";
 import corsOptions from "./config/corsOptions.js";
 import cors from "cors";
+import vehiclesRouter from "./routes/vehicles/vehiclesRouter.js";
 
 const app = express();
 dotenv.config();
@@ -20,7 +21,7 @@ app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/user/updateUser", userInfosRouter);
 app.use("/api/signin-with-google", signinWithGoogle);
-app.get("/hey", (req, res) => res.send("hey there!!"));
+app.use("/api/vehicles", vehiclesRouter);
 
 app.use(errorHandling);
 const connect = async () => {
