@@ -103,6 +103,22 @@ const Profile = () => {
       dispatch(deleteFailure(error));
     }
   };
+  const logout = async () => {
+    dispatch(deleteStart());
+
+    try {
+      const req = await customAxios.get("user/updateUser/logout");
+      console.log("response from logout: ", req);
+      if (req.status === 200) {
+        dispatch(deleteSuccess());
+        localStorage.clear();
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Error during logout user:", error);
+      dispatch(deleteFailure(error));
+    }
+  };
 
   return (
     <div className="w-full flex flex-col gap-3 items-center justify-center h-[90vh]">
@@ -186,6 +202,7 @@ const Profile = () => {
           <span
             type="button"
             className="text-blue-600 font-semibold cursor-pointer"
+            onClick={logout}
           >
             Logout
           </span>
