@@ -13,11 +13,17 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
+  deleteStart,
+  deleteSuccess,
+  deleteFailure,
 } from "../features/userSlice";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const Profile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currUser = useSelector((state) => state.user.currUser);
+  const error = useSelector((state) => state.user.error);
   const [loading, setLoading] = useState(false);
   const [file, setfile] = useState(undefined);
   const [uploadPer, setUploadPer] = useState(0);
@@ -66,19 +72,35 @@ const Profile = () => {
     dispatch(updateStart());
 
     try {
-      if (!formData.username || !formData.email) {
-        setShowMessage("infos are required");
-      } else {
-        const req = await customAxios.post(
-          `/user/updateUser/${currUser._id}`,
-          formData
-        );
-        dispatch(updateSuccess(req.data));
-        console.log("response from req in handleUpdate: ", req.data);
+      setLoading(true);
+      const req = await customAxios.post(
+        `/user/updateUser/${currUser._id}`,
+        formData
+      );
+      dispatch(updateSuccess(req.data));
+      setLoading(false);
+      console.log("response from req in handleUpdate: ", req.data);
+    } catch (error) {
+      console.log("Error during updating user:", error);
+      setLoading(false);
+      dispatch(updateFailure(error.response.data.message));
+    }
+  };
+
+  const deleteAccout = async () => {
+    dispatch(deleteStart());
+
+    try {
+      const req = await customAxios.delete(`/user/updateUser/${currUser._id}`);
+      console.log("response from deleteAccount: ", req);
+      if (req.status === 200) {
+        dispatch(deleteSuccess());
+        localStorage.clear();
+        navigate("/");
       }
     } catch (error) {
       console.log("Error during updating user:", error);
-      dispatch(updateFailure(error.response.data.message));
+      dispatch(deleteFailure(error));
     }
   };
 
@@ -119,7 +141,7 @@ const Profile = () => {
       ) : uploadPer === 100 ? (
         <p className="text-green-600">image uploaded successfully</p>
       ) : (
-        ""
+        <p className="invisible">nothing</p>
       )}
 
       <form
@@ -157,6 +179,7 @@ const Profile = () => {
           <span
             type="button"
             className="text-red-600 font-semibold cursor-pointer"
+            onClick={deleteAccout}
           >
             delete account
           </span>
@@ -168,6 +191,11 @@ const Profile = () => {
           </span>
         </div>
       </form>
+      {error ? (
+        <p className="text-red-600">error</p>
+      ) : (
+        <p className="invisible">nothing</p>
+      )}
     </div>
   );
 };
