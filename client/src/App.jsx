@@ -6,6 +6,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 const Profile = lazy(() => import("./pages/Profile"));
+const IncludeVehicle = lazy(() => import("./pages/IncludeVehicle"));
 import Navbar from "./componats/Navbar";
 import ProtectedRoute from "./componats/ProtactedRoute";
 
@@ -26,6 +27,15 @@ const App = () => {
         <Suspense fallback={<div>Loading...</div>}>
           <Navbar />
           <About />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/vehicles/include",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+          <IncludeVehicle />
         </Suspense>
       ),
     },

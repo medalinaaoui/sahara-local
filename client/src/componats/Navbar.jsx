@@ -23,6 +23,9 @@ const Navbar = ({ login }) => {
           <li>
             <Link to={"/about"}>About</Link>
           </li>
+          <li>
+            <Link to={"/vehicles/include"}>Include vehicle</Link>
+          </li>
 
           <li>
             <Link to={"/"}>Home</Link>
