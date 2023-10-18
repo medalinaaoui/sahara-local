@@ -17,7 +17,7 @@ const includeVehicleController = async (req, res, next) => {
 
   try {
     const vehicle = await Vehicle.create(req.body);
-    res.status(200).json({
+    res.status(201).json({
       message: "Successfully created a new vehicle",
       data: vehicle,
     });
