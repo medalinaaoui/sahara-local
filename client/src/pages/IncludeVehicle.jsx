@@ -6,8 +6,10 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../firebase";
-
+import { useSelector } from "react-redux";
+import customAxios from "../utils/axios";
 const IncludeVehicle = () => {
+  const currUser = useSelector((state) => state.user.currUser);
   const [features, setFeatures] = useState({
     airConditioning: false,
     powerWindows: false,
@@ -17,6 +19,7 @@ const IncludeVehicle = () => {
   });
   const [formData, setFormData] = useState({});
   const [images, setImages] = useState([]);
+  const [pictures, setPictures] = useState([]);
   const [showMessage, setShowMessage] = useState("");
   const [uploadPer, setUploadPer] = useState(0);
   const [showLoading, setShowLoading] = useState(false);
@@ -68,7 +71,6 @@ const IncludeVehicle = () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 uploadedImageUrls.push(downloadURL);
                 resolve();
-                setImages([]);
               });
             }
           );
@@ -79,6 +81,7 @@ const IncludeVehicle = () => {
     }
 
     console.log("Uploaded image URLs: ", uploadedImageUrls);
+    setPictures(uploadedImageUrls);
     setUploadPer(0);
   };
 
@@ -88,9 +91,26 @@ const IncludeVehicle = () => {
     }, 10000);
   }, [handleImageUpload]);
 
-  const testBtn = () => {
+  const handleIncludeVehicle = async () => {
     const featuresArr = Object.keys(features).filter((key) => features[key]);
-    console.log({ ...formData, features: featuresArr, images });
+    console.log({
+      ...formData,
+      features: featuresArr,
+      pictures,
+      owner: currUser._id,
+    });
+
+    try {
+      const req = await customAxios.post("/vehicles/include", {
+        ...formData,
+        features: featuresArr,
+        pictures,
+        owner: currUser._id,
+      });
+      console.log("this is the response from req: ", req);
+    } catch (error) {
+      console.log("error from handleIncludeVehicle function: ", error);
+    }
   };
 
   return (
@@ -254,7 +274,7 @@ const IncludeVehicle = () => {
           </div>
           <div className="w-full flex items-center justify-center">
             <button
-              onClick={testBtn}
+              onClick={handleIncludeVehicle}
               className="btn btn-outline mt-2 h-48 rounded-full w-48"
             >
               Include the vehicle
