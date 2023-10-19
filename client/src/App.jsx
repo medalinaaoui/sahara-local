@@ -35,7 +35,9 @@ const App = () => {
       element: (
         <Suspense fallback={<div>Loading...</div>}>
           <Navbar />
-          <IncludeVehicle />
+          <ProtectedRoute>
+            <IncludeVehicle />
+          </ProtectedRoute>
         </Suspense>
       ),
     },

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState, useRef, useEffect } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import {
   getStorage,
   ref,
@@ -191,6 +192,15 @@ const Profile = () => {
             "Update"
           )}
         </button>
+
+        <Link
+          type="button"
+          className="btn btn-sm  hover:bg-black border-none btn-primary w-4/5 sm:w-1/2 lg:w-1/3"
+          to="/vehicles/include"
+        >
+          Include a vehicle
+        </Link>
+
         <div className="flex justify-between w-4/5 sm:w-1/2 lg:w-1/3">
           <span
             type="button"
@@ -199,13 +209,26 @@ const Profile = () => {
           >
             delete account
           </span>
-          <span
-            type="button"
-            className="text-blue-600 font-semibold cursor-pointer"
-            onClick={logout}
+
+          <button
+            className="text-blue-900 font-semibold"
+            onClick={() => document.getElementById("my_modal_1").showModal()}
           >
-            Logout
-          </span>
+            logout
+          </button>
+          <dialog id="my_modal_1" className="modal">
+            <div className="modal-box flex flex-col gap-3">
+              <p className="text-center font-semibold">
+                Do you want to logout?
+              </p>
+              <div className="w-full flex justify-around py-4">
+                <button onClick={logout}>Yes</button>
+                <form method="dialog">
+                  <button className="">No</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
       </form>
       {error ? (
