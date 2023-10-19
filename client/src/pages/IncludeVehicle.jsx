@@ -1,4 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import app from "../firebase";
 
 const IncludeVehicle = () => {
   const [features, setFeatures] = useState({
@@ -9,6 +16,10 @@ const IncludeVehicle = () => {
     leatherSeats: false,
   });
   const [formData, setFormData] = useState({});
+  const [images, setImages] = useState([]);
+  const [showMessage, setShowMessage] = useState("");
+  const [uploadPer, setUploadPer] = useState(0);
+  const [showLoading, setShowLoading] = useState(false);
 
   const handleFeatureChange = (feature) => {
     setFeatures((prevFeatures) => ({
@@ -24,9 +35,62 @@ const IncludeVehicle = () => {
       [name]: value,
     });
   };
+
+  const handleImageUpload = async () => {
+    if (images.length > 4) return setShowMessage("max number of images is 4");
+    if (images.length === 0)
+      return setShowMessage("cannot list a car without at least one image");
+
+    const storage = getStorage(app);
+    const uploadedImageUrls = [];
+
+    for (const image of images) {
+      const imageName = new Date().getTime() + image.name;
+      const storageRef = ref(storage, imageName);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+
+      try {
+        setShowLoading(true);
+        await new Promise((resolve, reject) => {
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              setUploadPer(Math.round(progress));
+            },
+            (error) => {
+              setShowMessage("something went wrong please try again");
+              console.log("error from include V uploadTask.on: ", error);
+              reject(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                uploadedImageUrls.push(downloadURL);
+                resolve();
+                setImages([]);
+              });
+            }
+          );
+        });
+      } catch (error) {
+        console.log("error from include v catch block: ", error);
+      }
+    }
+
+    console.log("Uploaded image URLs: ", uploadedImageUrls);
+    setUploadPer(0);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowMessage("");
+    }, 10000);
+  }, [handleImageUpload]);
+
   const testBtn = () => {
     const featuresArr = Object.keys(features).filter((key) => features[key]);
-    console.log({ ...formData, features: featuresArr });
+    console.log({ ...formData, features: featuresArr, images });
   };
 
   return (
@@ -162,17 +226,51 @@ const IncludeVehicle = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <h2 className="text-lg font-semibold">Images</h2>
           <p>Max amount of images 5</p>
           <input
+            multiple
             type="file"
             accept="image/*"
+            onChange={(e) => setImages(e.target.files)}
             className="file-input file-input-bordered file-input-secondary w-full max-w-xs"
           />
-          <button onClick={testBtn} className="btn btn-outline btn-primary">
-            Include the vehicle
-          </button>
+          <div>
+            <progress
+              className={
+                showLoading ? "progress progress-primary  w-full" : "invisible"
+              }
+              value={uploadPer}
+              max="100"
+            ></progress>
+            <button
+              type="button"
+              onClick={handleImageUpload}
+              className="btn btn-outline btn-primary w-full"
+            >
+              Upload Images
+            </button>
+          </div>
+          <div className="w-full flex items-center justify-center">
+            <button
+              onClick={testBtn}
+              className="btn btn-outline mt-2 h-48 rounded-full w-48"
+            >
+              Include the vehicle
+            </button>
+          </div>
+          <div>
+            <p
+              className={
+                showMessage.length > 0
+                  ? "text-red-600 text-center font-semibold"
+                  : "invisible"
+              }
+            >
+              {showMessage}
+            </p>
+          </div>
         </div>
       </div>
     </div>
