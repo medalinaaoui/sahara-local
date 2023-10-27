@@ -10,7 +10,7 @@ const vehiclesListController = async (req, res, next) => {
       res.status(404).json({
         message: "Vehicle not found",
       });
-    } else if (vehicle.owner !== owner) {
+    } else if (vehicle.owner.toString() !== owner) {
       res.status(401).json({
         message: "You are not the owner of this vehicle",
       });

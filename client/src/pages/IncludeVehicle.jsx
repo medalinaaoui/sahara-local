@@ -23,6 +23,7 @@ const IncludeVehicle = () => {
   const [showMessage, setShowMessage] = useState("");
   const [uploadPer, setUploadPer] = useState(0);
   const [showLoading, setShowLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const handleFeatureChange = (feature) => {
     setFeatures((prevFeatures) => ({
@@ -107,6 +108,15 @@ const IncludeVehicle = () => {
         pictures,
         owner: currUser._id,
       });
+      if (req.status === 201) {
+        setShowToast(true);
+        setFormData({});
+        setPictures([]);
+        setImages([]);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 10000);
+      }
       console.log("this is the response from req: ", req);
     } catch (error) {
       console.log("error from handleIncludeVehicle function: ", error);
@@ -291,6 +301,13 @@ const IncludeVehicle = () => {
               {showMessage}
             </p>
           </div>
+          {showToast && (
+            <div className="toast">
+              <div className="alert alert-info">
+                <span>You included the vehicle excluded successfully</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

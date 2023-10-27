@@ -6,6 +6,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 const OwnVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
   const currUser = useSelector((state) => state.user.currUser);
   const showOwnVehicles = async () => {
     try {
@@ -23,6 +24,20 @@ const OwnVehicle = () => {
   useEffect(() => {
     showOwnVehicles();
   }, []);
+
+  const excludeVehicle = async (id) => {
+    try {
+      const req = await axios.delete(`/vehicles/excludeVehicle/${id}`);
+      if (req.status === 200) {
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 10000);
+      }
+    } catch (error) {
+      console.log("excludeVehicle ~ error:", error);
+    }
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -86,14 +101,47 @@ const OwnVehicle = () => {
                 </td>
                 <td>{vehicle.color}</td>
                 <td>{vehicle.mileage}mil</td>
-                <td>{vehicle.price}$</td>
+                <td>
+                  {vehicle.price}$
+                  {showToast && (
+                    <div className="toast">
+                      <div className="alert alert-info">
+                        <span>Vehicle have been excluded successfully</span>
+                      </div>
+                    </div>
+                  )}
+                </td>
                 <th>
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
                 <th>
-                  <button className="btn btn-ghost">
-                    <BsFillTrashFill className="text-lg" />
-                  </button>
+                  <a href="#my_modal_8" className="btn">
+                    <button className="">
+                      <BsFillTrashFill className="text-lg" />
+                    </button>
+                  </a>
+                  {/* Put this part before </body> tag */}
+                  <div className="modal" id="my_modal_8">
+                    <div className="modal-box">
+                      <h3 className="font-bold text-lg">Hello!</h3>
+                      <p className="py-4">
+                        You sure you want to exclude {vehicle.make} from your
+                        profile
+                      </p>
+                      <div className="modal-action">
+                        <a
+                          href="#"
+                          className="btn"
+                          onClick={() => excludeVehicle(vehicle._id)}
+                        >
+                          Yes
+                        </a>
+                        <a href="#" className="btn">
+                          No
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </th>
               </tr>
             ))
