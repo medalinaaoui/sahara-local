@@ -2,7 +2,7 @@ import axios from "../utils/axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BsFillTrashFill } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 const OwnVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -112,7 +112,9 @@ const OwnVehicle = () => {
                   )}
                 </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <Link to={`/vehicles/${vehicle._id}`}>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </Link>
                 </th>
                 <th>
                   <a href="#my_modal_8" className="btn">
