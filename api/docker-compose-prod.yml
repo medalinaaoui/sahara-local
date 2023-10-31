@@ -2,6 +2,10 @@ version: "3.7"
 
 services:
   my-node-app:
+    build:
+      context: .
+      args:
+        - NODE_ENV=production
     environment:
       NODE_ENV: production
     command: node index.js

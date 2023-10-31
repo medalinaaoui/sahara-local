@@ -23,7 +23,7 @@ app.use("/api/user/updateUser", userInfosRouter);
 app.use("/api/signin-with-google", signinWithGoogle);
 app.use("/api/vehicles", vehiclesRouter);
 app.get("/api/test", (req, res) => {
-  res.send("works");
+  res.send("works!aaa");
 });
 
 app.use(errorHandling);
