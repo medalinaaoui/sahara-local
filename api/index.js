@@ -22,6 +22,9 @@ app.use("/api/login", loginRouter);
 app.use("/api/user/updateUser", userInfosRouter);
 app.use("/api/signin-with-google", signinWithGoogle);
 app.use("/api/vehicles", vehiclesRouter);
+app.get("/api/test", (req, res) => {
+  res.send("works");
+});
 
 app.use(errorHandling);
 const connect = async () => {
