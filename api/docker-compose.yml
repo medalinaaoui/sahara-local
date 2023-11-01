@@ -12,3 +12,7 @@ services:
     volumes:
       - ./:/app:ro
       - /app/node_modules
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
