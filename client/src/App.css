@@ -43,3 +43,31 @@ input:disabled {
 }
 
 /* Customize as needed and add more styles for different states and effects. */
+.behind-the-car {
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  background: linear-gradient(150deg, #e6492a 0%, #ee765e 100%);
+}
+
+.brands {
+  opacity: 0.75;
+}
+.brands .one {
+  width: 8.25rem;
+  height: 6.25rem;
+  flex-shrink: 0;
+}
+.brands .two {
+  width: 7.9375rem;
+  height: 5.9375rem;
+  flex-shrink: 0;
+}
+.brands .three {
+  width: 4.6875rem;
+  height: 4.6875rem;
+  flex-shrink: 0;
+}
+.brands .four {
+  width: 4.6875rem;
+  height: 4.6875rem;
+  flex-shrink: 0;
+}
