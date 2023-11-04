@@ -4,6 +4,7 @@ const initialState = {
   currUser: null,
   error: null,
   loading: false,
+  language: "arabic",
 };
 
 const userSlice = createSlice({
@@ -49,6 +50,9 @@ const userSlice = createSlice({
       state.error = null;
       state.currUser = action.payload;
     },
+    changeLang: (state, action) => {
+      state.language = action.payload;
+    },
   },
 });
 
@@ -62,5 +66,6 @@ export const {
   deleteStart,
   deleteSuccess,
   deleteFailure,
+  changeLang,
 } = userSlice.actions;
 export default userSlice.reducer;

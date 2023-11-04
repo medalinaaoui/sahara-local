@@ -1,53 +1,70 @@
 import { Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
 import { useSelector } from "react-redux";
-const Navbar = ({ login }) => {
-  const currUser = useSelector((state) => state.user.currUser);
+import { navbarData } from "../payload";
+import { useDispatch } from "react-redux";
+import { changeLang } from "../features/userSlice";
+import { useState } from "react";
+
+const Navbar = () => {
+  // const currUser = useSelector((state) => state.user.currUser);
+  const lang = useSelector((state) => state.user.language) || "arabic";
+
+  const dispatch = useDispatch();
+  const [selectedLanguage, setSelectedLanguage] = useState("arabic"); // Set the initial language here
+
+  const handleLanguageChange = (event) => {
+    const newLanguage = event.target.value;
+    setSelectedLanguage(newLanguage);
+    dispatch(changeLang(newLanguage));
+  };
+  console.log("navbarData.english.logo: ", navbarData.english.logo);
+
+  console.log("navbarData", navbarData);
   return (
-    <header className="flex justify-around items-center py-3 px-6 bg-[#849BA2]">
-      <div className="flex items-center">
-        <h1 className="sm:text-3xl text-2xl font-bold ">Sahara Local</h1>
+    <header className="flex px-40 pt-8 w-full justify-between items-center gap-12">
+      <h1 className="text-3xl font-bold">Sahara local</h1>
+      <div>
+        <select
+          className="select select-primary select-sm w-32 max-w-xs outline-none active:outline-none"
+          value={selectedLanguage}
+          onChange={handleLanguageChange}
+        >
+          <option value="arabic">Arabic</option>
+          <option value="english">English</option>
+        </select>
       </div>
-
-      <div className="flex w-1/3 items-center relative">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="px-2 pl-8 h-8 w-full"
-        />
-        <ImSearch className="absolute left-2 text-navColor" />
-      </div>
-
-      <nav className="flex items-center">
-        <ul className="flex gap-5 font-bold">
+      <nav className="grow">
+        <ul
+          className={
+            lang === "arabic"
+              ? "flex flex-row-reverse justify-between px-8 font-semibold"
+              : "flex justify-between px-8 font-semibold"
+          }
+        >
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to="/">{navbarData[lang].home}</Link>
           </li>
-
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to="/about">{navbarData[lang].about_us}</Link>
           </li>
-          {currUser ? (
-            <li>
-              <Link to={"/profile"}>
-                <img
-                  src={currUser.profile_pic}
-                  alt="profile"
-                  className="h-7 aspect-square rounded-full"
-                />
-              </Link>
-            </li>
-          ) : login ? (
-            <li>
-              <Link to={"/register"}>Register</Link>
-            </li>
-          ) : (
-            <li>
-              <Link to={"/login"}>Login</Link>
-            </li>
-          )}
+          <li>
+            <Link to="/services">{navbarData[lang].services}</Link>
+          </li>
+          <li>
+            <Link to="/contact_us">{navbarData[lang].contact_us}</Link>
+          </li>
         </ul>
       </nav>
+
+      <div className="flex gap-3">
+        <button className="btn btn-sm bg-secondary text-white hover:text-secondary">
+          <Link to="/login">{navbarData[lang].login}</Link>
+        </button>
+        <button className="btn btn-sm border-secondary border-1 text-secondary">
+          <Link to="/register">{navbarData[lang].register}</Link>
+        </button>
+      </div>
     </header>
   );
 };

@@ -5,6 +5,8 @@ export default {
     extend: {
       colors: {
         navColor: "#888",
+        primary: "#09546C",
+        secondary: "#E6492A",
       },
     },
   },
