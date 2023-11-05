@@ -23,6 +23,10 @@ const userScheme = mongoose.Schema(
       type: String,
       required: true,
     },
+    language: {
+      type: String,
+      default: "arabic",
+    },
   },
   { timestamps: true }
 );

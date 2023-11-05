@@ -40,57 +40,64 @@ const IncludeVehicle = () => {
     });
   };
 
-  const handleImageUpload = async () => {
-    if (images.length > 4) return setShowMessage("max number of images is 4");
-    if (images.length === 0)
-      return setShowMessage("cannot list a car without at least one image");
+  const handleFileInputChange = async (e) => {
+    setImages(e.target.files);
 
-    const storage = getStorage(app);
-    const uploadedImageUrls = [];
+    const handleImageUpload = async () => {
+      if (e.target.files.length > 4)
+        return setShowMessage("max number of images is 4");
+      if (e.target.files.length === 0)
+        return setShowMessage("cannot list a car without at least one image");
 
-    for (const image of images) {
-      const imageName = new Date().getTime() + image.name;
-      const storageRef = ref(storage, imageName);
-      const uploadTask = uploadBytesResumable(storageRef, image);
+      const storage = getStorage(app);
+      const uploadedImageUrls = [];
 
-      try {
-        setShowLoading(true);
-        await new Promise((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              setUploadPer(Math.round(progress));
-            },
-            (error) => {
-              setShowMessage("something went wrong please try again");
-              console.log("error from include V uploadTask.on: ", error);
-              reject(error);
-            },
-            () => {
-              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                uploadedImageUrls.push(downloadURL);
-                resolve();
-              });
-            }
-          );
-        });
-      } catch (error) {
-        console.log("error from include v catch block: ", error);
+      for (const image of e.target.files) {
+        const imageName = new Date().getTime() + image.name;
+        const storageRef = ref(storage, imageName);
+        const uploadTask = uploadBytesResumable(storageRef, image);
+
+        try {
+          setShowLoading(true);
+          await new Promise((resolve, reject) => {
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setUploadPer(Math.round(progress));
+              },
+              (error) => {
+                setShowMessage("something went wrong please try again");
+                console.log("error from include V uploadTask.on: ", error);
+                reject(error);
+              },
+              () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  uploadedImageUrls.push(downloadURL);
+                  resolve();
+                });
+              }
+            );
+          });
+        } catch (error) {
+          console.log("error from include v catch block: ", error);
+        }
       }
-    }
 
-    console.log("Uploaded image URLs: ", uploadedImageUrls);
-    setPictures(uploadedImageUrls);
-    setUploadPer(0);
+      console.log("Uploaded image URLs: ", uploadedImageUrls);
+      setPictures(uploadedImageUrls);
+      setUploadPer(0);
+    };
+
+    handleImageUpload();
   };
 
   useEffect(() => {
     setTimeout(() => {
       setShowMessage("");
     }, 10000);
-  }, [handleImageUpload]);
+  }, []);
 
   const handleIncludeVehicle = async () => {
     const featuresArr = Object.keys(features).filter((key) => features[key]);
@@ -257,13 +264,26 @@ const IncludeVehicle = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold">Images</h2>
+          <div className="flex gap-4 items-center">
+            <h2 className="text-lg font-semibold">Images</h2>
+            <div className="flex gap-2">
+              {pictures?.map((pic, i) => (
+                <div className="h-8 w-auto rounded-lg" key={i}>
+                  <img
+                    src={pic}
+                    alt=""
+                    className="w-full h-full object-contain rounded-lg "
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
           <p>Max amount of images 5</p>
           <input
             multiple
             type="file"
             accept="image/*"
-            onChange={(e) => setImages(e.target.files)}
+            onChange={handleFileInputChange}
             className="file-input file-input-bordered file-input-secondary w-full max-w-xs"
           />
           <div>
@@ -274,13 +294,13 @@ const IncludeVehicle = () => {
               value={uploadPer}
               max="100"
             ></progress>
-            <button
+            {/* <button
               type="button"
-              onClick={handleImageUpload}
+              // onClick={handleImageUpload}
               className="btn btn-outline btn-primary w-full"
             >
               Upload Images
-            </button>
+            </button> */}
           </div>
           <div className="w-full flex items-center justify-center">
             <button
