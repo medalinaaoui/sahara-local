@@ -148,3 +148,48 @@ export const secondArrow = (
     />
   </svg>
 );
+
+export const loginData = {
+  arabic: {
+    title: "تسجيل الدخول",
+    usernamePlaceholder: "إسم المستخدم",
+    passwordPlaceholder: "كلمة المرور",
+    forgotPasswordText: "هل نسيت كلمة المرور؟",
+    dontHaveAcc: "ليس لديك حساب؟",
+    loginButtonLabel: "دخول",
+    register: "إشترك",
+    googleAuth: "سجل الدخول مع جوجل",
+  },
+  english: {
+    title: "Login",
+    usernamePlaceholder: "Username",
+    passwordPlaceholder: "Password",
+    forgotPasswordText: "Forgot Password?",
+    dontHaveAcc: "You don't have an account?",
+    loginButtonLabel: "Submit",
+    register: "Register",
+    googleAuth: "CONTINUE WITH GOOGLE",
+  },
+};
+export const registerData = {
+  arabic: {
+    title: "إنشاء حساب",
+    usernamePlaceholder: "إسم المستخدم",
+    emailPlaceholder: "بريدك الالكتروني",
+    passwordPlaceholder: "كلمة المرور",
+    signInButtonLabel: "دخول",
+    googleAuth: "سجل الدخول مع جوجل",
+    alreadyHaveAcc: "لديك حساب؟",
+    login: "سجل الدخول",
+  },
+  english: {
+    title: "Create Account",
+    usernamePlaceholder: "Username",
+    emailPlaceholder: "Email",
+    passwordPlaceholder: "Password",
+    signInButtonLabel: "Submit",
+    googleAuth: "SIGN IN WITH GOOGLE",
+    alreadyHaveAcc: "Already Have An Account?",
+    login: "Login",
+  },
+};

@@ -71,3 +71,93 @@ input:disabled {
   height: 4.6875rem;
   flex-shrink: 0;
 }
+
+.thebutton {
+  --primary-color: #645bff;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.thebutton .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thebutton .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: "#E6492A";
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.thebutton .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.thebutton:hover {
+  background-color: #e6492a;
+}
+
+.thebutton:hover .arrow {
+  background: #e6492a;
+}
+
+.thebutton:hover .arrow:before {
+  right: 0;
+  border-color: #e6492a;
+}
+
+.google-button {
+  display: flex;
+  padding: 0.5rem 1.4rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  gap: 0.75rem;
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+
+.google-button svg {
+  height: 24px;
+}
+
+.google-button:hover {
+  transform: scale(1.02);
+}

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import customAxios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import Oauth from "../componats/Oauth";
+import { useSelector } from "react-redux";
+import { registerData } from "../payload";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const lang = useSelector((state) => state.user.language) || "arabic";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,51 +42,68 @@ const Register = () => {
     }
   };
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="flex flex-col justify-center items-center gap-2 w-full">
-        <h1 className="text-2xl font-bold uppercase text-center">Register</h1>
+    <div className="h-[90vh] flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center gap-6 w-full">
+        <h1 className="text-2xl font-bold uppercase text-center">
+          {registerData[lang].title}
+        </h1>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-2 w-full items-center"
         >
           <input
-            className="sm:py-2 py-1 px-1 w-1/3"
+            className={`${
+              lang === "arabic" ? "text-right" : ""
+            } sm:py-2 py-1 px-1 w-1/3 `}
             onChange={handleChange}
             name="username"
             type="text"
-            placeholder="username"
+            placeholder={registerData[lang].usernamePlaceholder}
           />
           <input
-            className="sm:py-2 py-1 px-1 w-1/3"
+            className={`${
+              lang === "arabic" ? "text-right" : ""
+            } sm:py-2 py-1 px-1 w-1/3 `}
             onChange={handleChange}
             name="email"
             type="email"
-            placeholder="email"
+            placeholder={registerData[lang].emailPlaceholder}
           />
           <input
-            className="sm:py-2 py-1 px-1 w-1/3"
+            className={`${
+              lang === "arabic" ? "text-right" : ""
+            } sm:py-2 py-1 px-1 w-1/3 `}
             onChange={handleChange}
             name="password"
             type="password"
-            placeholder="password"
+            placeholder={registerData[lang].passwordPlaceholder}
           />
           <button
             type="submit"
             disabled={loading}
-            className="btn btn-sm bg-navColor hover:bg-black border-none btn-primary w-1/3"
+            className="thebutton  btn btn-sm bg-secondary text-white hover:text-secondary w-1/3"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>
             ) : (
-              "Submit"
+              <>
+                {registerData[lang].signInButtonLabel}
+                <div className="arrow-wrapper">
+                  <div className="arrow"></div>
+                </div>
+              </>
             )}
           </button>
-          <Oauth />
+          <Oauth text={registerData[lang].googleAuth} />
         </form>
-        <div className="flex gap-4">
-          <p>Already have an account?</p>{" "}
+        <div
+          className={
+            lang === "arabic" ? "flex gap-4 flex-row-reverse" : "flex gap-4"
+          }
+        >
+          <p>{registerData[lang].alreadyHaveAcc} </p>
           <Link className="text-blue-600" to="/login">
-            login
+            {registerData[lang].login.toLowerCase()}
           </Link>
         </div>
         <div className="text-red-600 text-center">
