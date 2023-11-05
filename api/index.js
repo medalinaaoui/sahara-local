@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import corsOptions from "./config/corsOptions.js";
 import cors from "cors";
 import vehiclesRouter from "./routes/vehicles/vehiclesRouter.js";
+import allVehiclesRouter from "./routes/vehicles/allVehiclesRouter.js";
 
 const app = express();
 dotenv.config();
@@ -22,9 +23,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/user/updateUser", userInfosRouter);
 app.use("/api/signin-with-google", signinWithGoogle);
 app.use("/api/vehicles", vehiclesRouter);
-app.get("/api/test", (req, res) => {
-  res.send("works!aaa");
-});
+app.use("/api/local/vehicles", allVehiclesRouter);
 
 app.use(errorHandling);
 const connect = async () => {
