@@ -193,3 +193,24 @@ export const registerData = {
     login: "Login",
   },
 };
+
+export const about = {
+  arabic: {
+    title: "من نحن",
+    content: `
+    تم تصميم منصتنا بعناية شديدة بهدف تقديم تجربة مريحة وجديرة بالثقة للأفراد الذين يبحثون عن سيارة للاستئجار، وأيضًا لأولئك الذين يرغبون في تأجير سياراتهم. نحن نفهم أهمية وجود وسيلة نقل موثوقة، ونحن هنا لرسم جسر التواصل بين أصحاب السيارات وأولئك الذين في حاجة للتنقل.
+
+مقرنا في قلب الصحراء، ونحن نفتخر بخدمة المجتمع المحلي ونتطلع إلى أن نكون الحلا الأمثل لجميع احتياجات استئجار السيارات. مهمتنا هي جعل استئجار السيارات ميسرًا وسهلاً واقتصاديًا للجميع في الصحراء وخارجها
+    `,
+    readMore: "إقرء المزيد",
+  },
+  english: {
+    title: "About Us",
+    content: `
+    Our platform has been meticulously designed with the primary aim of offering a convenient and trustworthy experience for individuals seeking to rent a car, as well as those looking to rent out their vehicles. We understand the importance of reliable transportation, and we are here to bridge the gap between car owners and those in need of a ride.
+
+    Based in the heart of Sahara, we take great pride in serving the local community and aspire to be the go-to solution for all your car rental requirements. Our mission is to make car rental accessible, seamless, and cost-effective for everyone in Sahara and beyond.
+    `,
+    readMore: "Read More",
+  },
+};

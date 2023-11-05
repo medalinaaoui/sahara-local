@@ -10,6 +10,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { RiUserAddLine } from "react-icons/ri";
 import { GiCheckMark } from "react-icons/gi";
 import { LuPhoneIncoming, LuPhoneOutgoing } from "react-icons/lu";
+import ShortAbout from "../componats/shortAbout";
 
 const Home = () => {
   const currUser = useSelector((state) => state.user.currUser);
@@ -126,6 +127,8 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        <ShortAbout />
 
         <div className="flex gap-8 flex-col my-12 px-6 pt-12">
           <h4 className="text-center text-3xl font-semibold text-accent">
