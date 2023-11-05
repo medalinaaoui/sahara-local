@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
 import { useSelector } from "react-redux";
-import { navbarData } from "../payload";
+import { navbarData, assets } from "../payload";
 import { useDispatch } from "react-redux";
 import { changeLang } from "../features/userSlice";
 import { useState } from "react";
+// import { FiLogOut } from "react-icons/fi";
+import { MdOutlineExpandMore } from "react-icons/md";
 
 const Navbar = () => {
-  // const currUser = useSelector((state) => state.user.currUser);
+  const currUser = useSelector((state) => state.user.currUser);
   const lang = useSelector((state) => state.user.language) || "arabic";
 
   const dispatch = useDispatch();
   const [selectedLanguage, setSelectedLanguage] = useState("arabic"); // Set the initial language here
+
+  const [menuToggel, setMenuToggel] = useState(false);
 
   const handleLanguageChange = (event) => {
     const newLanguage = event.target.value;
@@ -57,14 +61,52 @@ const Navbar = () => {
         </ul>
       </nav>
 
-      <div className="flex gap-3">
-        <button className="btn btn-sm bg-secondary text-white hover:text-secondary">
-          <Link to="/login">{navbarData[lang].login}</Link>
-        </button>
-        <button className="btn btn-sm border-secondary border-1 text-secondary">
-          <Link to="/register">{navbarData[lang].register}</Link>
-        </button>
-      </div>
+      {currUser ? (
+        <div className="flex items-center  gap-3">
+          <Link to="/profile">
+            <div className="avatar mt-2">
+              <div className="w-10 aspect-square rounded-full">
+                <img src={currUser.profile_pic} />
+              </div>
+            </div>
+          </Link>
+          <div className="flex items-center relative">
+            <Link to="/profile">
+              <p className="font-semibold text-secondary">
+                {currUser.username}
+              </p>
+            </Link>
+            <span
+              onClick={() => setMenuToggel(!menuToggel)}
+              className="text-2xl text-secondary cursor-pointer"
+            >
+              <MdOutlineExpandMore />
+            </span>
+            {menuToggel && (
+              <ul className="absolute top-6 left-20 menu w-32 bg-slate-500 rounded-box">
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+                <li>
+                  <a>Item 3</a>
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="flex gap-3">
+          <button className="btn btn-sm bg-secondary text-white hover:text-secondary">
+            <Link to="/login">{navbarData[lang].login}</Link>
+          </button>
+          <button className="btn btn-sm border-secondary border-1 text-secondary">
+            <Link to="/register">{navbarData[lang].register}</Link>
+          </button>
+        </div>
+      )}
     </header>
   );
 };

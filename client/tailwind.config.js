@@ -7,6 +7,7 @@ export default {
         navColor: "#888",
         primary: "#09546C",
         secondary: "#E6492A",
+        accent: "#2F4858",
       },
     },
   },
