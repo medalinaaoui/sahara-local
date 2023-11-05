@@ -23,40 +23,83 @@ const vehicleSchema = new mongoose.Schema(
     },
     year: {
       type: Number,
-      required: true,
+      default: null,
     },
     color: {
       type: String,
       default: null,
     },
+    forRent: {
+      type: Boolean,
+      default: false,
+    },
+    forSale: {
+      type: Boolean,
+      default: false,
+    },
     price: {
       type: Number,
       default: null,
     },
+    rentalOptions: {
+      forDays: {
+        available: {
+          type: Boolean,
+          default: false,
+        },
+        price: {
+          type: Number,
+          default: null,
+        },
+      },
+      forWeeks: {
+        available: {
+          type: Boolean,
+          default: false,
+        },
+        price: {
+          type: Number,
+          default: null,
+        },
+      },
+      forMonths: {
+        available: {
+          type: Boolean,
+          default: false,
+        },
+        price: {
+          type: Number,
+          default: null,
+        },
+      },
+    },
     mileage: {
-      type: Number, // Added mile,age property
+      type: Number,
       default: null,
     },
     engineType: {
-      type: String, // Added engi,ne type (e.g., 'Gas', 'Electric')
+      type: String,
       default: null,
     },
     transmission: {
-      type: String, // Added tran,smission type (e.g., 'Automatic', 'Manual')
+      type: String,
       default: null,
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Reference to a User model (if you have one)
+      ref: "User",
     },
-    features: [String], // Added an array of features (e.g., 'Sunroof', 'Leather Seats')
-    maintenanceHistory: [
-      {
-        date: Date,
-        description: String,
-      },
-    ],
-    // Add any other properties that describe a Vehicle here
+    features: [String],
+    description: {
+      type: String,
+      default: null,
+    },
+    // maintenanceHistory: [
+    //   {
+    //     date: Date,
+    //     description: String,
+    //   },
+    // ],
   },
   { timestamps: true }
 );

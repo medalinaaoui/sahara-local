@@ -17,7 +17,7 @@ const userScheme = mongoose.Schema(
     profile_pic: {
       type: String,
       default:
-        "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/sahara-local.appspot.com/o/default-profile-icon-16.png?alt=media&token=e6945747-2f8c-42ca-aecb-1f1d15622094&_gl=1*2uvw56*_ga*MTYzNDIyMTk0My4xNjkwNDIyNDY5*_ga_CW55HF8NVT*MTY5OTIwOTcyNi4xMS4xLjE2OTkyMTE0MzQuNjAuMC4w",
     },
     password: {
       type: String,
