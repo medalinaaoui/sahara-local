@@ -56,21 +56,6 @@ input:disabled {
   height: 6.25rem;
   flex-shrink: 0;
 }
-.brands .two {
-  width: 7.9375rem;
-  height: 5.9375rem;
-  flex-shrink: 0;
-}
-.brands .three {
-  width: 4.6875rem;
-  height: 4.6875rem;
-  flex-shrink: 0;
-}
-.brands .four {
-  width: 4.6875rem;
-  height: 4.6875rem;
-  flex-shrink: 0;
-}
 
 .thebutton {
   --primary-color: #645bff;

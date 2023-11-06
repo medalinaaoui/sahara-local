@@ -41,7 +41,7 @@ const Login = () => {
     }
   };
   return (
-    <section className="h-[90vh]">
+    <section className="h-screen">
       <div className=" flex h-full justify-center items-center ">
         <div className="flex flex-col justify-center items-center gap-6 w-full ">
           <h1 className="text-2xl font-bold uppercase text-center">

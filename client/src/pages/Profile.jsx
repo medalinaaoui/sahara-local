@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useState, useRef, useEffect } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { persistor } from "../store";
 import {
   getStorage,
   ref,
@@ -112,8 +113,8 @@ const Profile = () => {
       console.log("response from logout: ", req);
       if (req.status === 200) {
         dispatch(deleteSuccess());
-        localStorage.clear();
-        navigate("/");
+        await persistor.purge();
+        window.location.reload(true);
       }
     } catch (error) {
       console.log("Error during logout user:", error);
@@ -122,7 +123,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-3 items-center justify-center h-[90vh]">
+    <div className="w-full flex flex-col gap-3 items-center justify-center h-screen">
       <h1 className="sm:text-3xl text-2xl font-semibold">Profile</h1>
       <input
         className="hidden"
@@ -219,11 +220,11 @@ const Profile = () => {
 
           <button
             className="text-blue-900 font-semibold"
-            onClick={() => document.getElementById("my_modal_1").showModal()}
+            onClick={() => document.getElementById("my_modal_2").showModal()}
           >
             logout
           </button>
-          <dialog id="my_modal_1" className="modal">
+          <dialog id="my_modal_2" className="modal">
             <div className="modal-box flex flex-col gap-3">
               <p className="text-center font-semibold">
                 Do you want to logout?

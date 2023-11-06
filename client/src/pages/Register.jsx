@@ -42,7 +42,7 @@ const Register = () => {
     }
   };
   return (
-    <div className="h-[90vh] flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-6 w-full">
         <h1 className="text-2xl font-bold uppercase text-center">
           {registerData[lang].title}

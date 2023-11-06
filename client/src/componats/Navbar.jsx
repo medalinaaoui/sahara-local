@@ -7,6 +7,7 @@ import { changeLang } from "../features/userSlice";
 import { useState } from "react";
 // import { FiLogOut } from "react-icons/fi";
 import { MdOutlineExpandMore } from "react-icons/md";
+import axios from "../utils/axios";
 
 const Navbar = () => {
   const currUser = useSelector((state) => state.user.currUser);
@@ -23,14 +24,20 @@ const Navbar = () => {
     setSelectedLanguage(newLanguage);
   };
 
-  const languageChangeConfirm = () => {
+  const languageChangeConfirm = async () => {
     console.log("selectedLanguage:", selectedLanguage);
     dispatch(changeLang(selectedLanguage));
     myModal.close();
+    const req = await axios.post(
+      `user/updateUser/perfered/language/${currUser._id}`,
+      { language: selectedLanguage }
+    );
+
+    console.log("🚀 ~ file: Navbar.jsx:32 ~ languageChangeConfirm ~ req:", req);
   };
 
   return (
-    <header className=" z-50 bg-[#f5f5f5] fixed flex px-6 md:px-16 xl:px-40 py-2  w-full justify-between items-center gap-6 sm:gap-12">
+    <header className=" z-[100] bg-[#f5f5f5] fixed flex px-2 md:px-16 xl:px-40 py-2  w-full justify-between items-center gap-4 sm:gap-12">
       <div className="dropdown md:hidden block ">
         <label tabIndex={0} className="btn btn-ghost btn-circle">
           <svg
