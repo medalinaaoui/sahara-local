@@ -6,12 +6,12 @@ const ShortAbout = () => {
   const lang = useSelector((state) => state.user.language) || "arabic";
   return (
     <section>
-      <h2 className="text-center text-2xl font-semibold py-12 underline-offset-[17px] underline">
+      <h2 className="text-center sm:text-2xl text-xl font-semibold py-6 sm:py-12 underline-offset-[17px] underline">
         {about[lang].title}
       </h2>
-      <div className="flex justify-between items-center gap-4">
+      <div className="flex sm:flex-row flex-col h-fit justify-between items-center gap-4">
         <img
-          className="w-1/3 rounded-xl shadow-2xl aspect-video"
+          className="lg:w-1/3 sm:w-1/2 w-full rounded-xl shadow-2xl aspect-video"
           src={carPic}
           alt="car pic"
         />
@@ -20,7 +20,9 @@ const ShortAbout = () => {
             lang === "arabic" ? "text-right grid gap-2" : " grid gap-2"
           }
         >
-          <p className="opacity-80 ">{about[lang].content}</p>
+          <p className="opacity-80 text-sm text-black font-semibold ">
+            {about[lang].content}
+          </p>
           <Link className="text-yellow-500 font-semibold text-lg" to="/about">
             {about[lang].readMore}
           </Link>

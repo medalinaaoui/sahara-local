@@ -83,7 +83,7 @@ const Home = () => {
         </div>
 
         <div className="flex gap-6 lg:gap-8 flex-col">
-          <h4 className="text-center text-xl lg:text-3xl font-semibold text-accent">
+          <h4 className="text-center underline-offset-[17px] underline text-xl lg:text-3xl font-semibold text-accent">
             {howToStart[lang].add.addTitle}
           </h4>
           <div
@@ -131,7 +131,7 @@ const Home = () => {
               <span className="text-8xl w-40 aspect-square text-secondary flex justify-center items-center border-2 border-secondary rounded-3xl">
                 <LuPhoneIncoming />
               </span>
-              <h5 className="text-lg font-semibold">
+              <h5 className="text-lg text-center font-semibold">
                 {howToStart[lang].add.stepThree.title}
               </h5>
               <p className="text-sm opacity-70 px-24 lg:px-0  text-center">
@@ -141,7 +141,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <ShortAbout /> */}
+        <ShortAbout />
 
         <div className="hidden  gap-8 flex-col my-12 px-6 pt-12">
           <h4 className="text-center text-3xl font-semibold text-accent">
