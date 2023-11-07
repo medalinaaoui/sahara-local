@@ -19,6 +19,7 @@ export const navbarData = {
     contact_us: "اتصل بنا",
     login: "سجل الدخول",
     register: "اشترك الآن",
+    vehiclesList: "السيارات",
   },
   english: {
     logo: englishLogo,
@@ -28,6 +29,7 @@ export const navbarData = {
     contact_us: "Contact Us",
     login: "Login",
     register: "Register",
+    vehiclesList: "Vehicles List",
   },
 };
 

@@ -6,6 +6,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 const Profile = lazy(() => import("./pages/Profile"));
+const CarsList = lazy(() => import("./pages/CarsList"));
 const IncludeVehicle = lazy(() => import("./pages/IncludeVehicle"));
 const VehicleDetails = lazy(() => import("./pages/VehicleDetails"));
 const OwnVehicle = lazy(() => import("./pages/OwnVehicle"));
@@ -44,13 +45,23 @@ const App = () => {
       ),
     },
     {
-      path: "/vehicles/list",
+      path: "/vehicles/ownlist",
       element: (
         <Suspense fallback={<div>Loading...</div>}>
           <Navbar />
           <ProtectedRoute>
             <OwnVehicle />
           </ProtectedRoute>
+        </Suspense>
+      ),
+    },
+    {
+      path: "/vehicles/list",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+
+          <CarsList />
         </Suspense>
       ),
     },

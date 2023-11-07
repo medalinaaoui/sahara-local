@@ -47,6 +47,9 @@ input:disabled {
   border-radius: 0.7rem;
   background: linear-gradient(150deg, #e6492a 0%, #ee765e 100%);
 }
+.footer-bg {
+  background: linear-gradient(150deg, #e6492a 0%, #ee765e 100%);
+}
 
 .brands {
   opacity: 0.75;
@@ -145,4 +148,23 @@ input:disabled {
 
 .google-button:hover {
   transform: scale(1.02);
+}
+.custom-shape-divider-top-1699386959 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1699386959 svg {
+  position: relative;
+  display: block;
+  width: calc(121% + 1.3px);
+  height: 86px;
+}
+
+.custom-shape-divider-top-1699386959 .shape-fill {
+  fill: #f5f5f5;
 }

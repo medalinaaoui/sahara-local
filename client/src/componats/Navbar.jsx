@@ -63,10 +63,10 @@ const Navbar = () => {
             <Link to="/">{navbarData[lang].home}</Link>
           </li>
           <li>
-            <Link to="/about">{navbarData[lang].about_us}</Link>
+            <Link to="/vehicles/list">{navbarData[lang].vehiclesList}</Link>
           </li>
           <li>
-            <Link to="/services">{navbarData[lang].services}</Link>
+            <Link to="/about">{navbarData[lang].about_us}</Link>
           </li>
           <li>
             <Link to="/contact_us">{navbarData[lang].contact_us}</Link>
@@ -144,10 +144,10 @@ const Navbar = () => {
             <Link to="/">{navbarData[lang].home}</Link>
           </li>
           <li>
-            <Link to="/about">{navbarData[lang].about_us}</Link>
+            <Link to="/vehicles/list">{navbarData[lang].vehiclesList}</Link>
           </li>
           <li>
-            <Link to="/services">{navbarData[lang].services}</Link>
+            <Link to="/about">{navbarData[lang].about_us}</Link>
           </li>
           <li>
             <Link to="/contact_us">{navbarData[lang].contact_us}</Link>
