@@ -99,7 +99,7 @@ export const howToStart = {
         para: "Review booking requests from renters and decide whether to accept or decline them.",
       },
       stepThree: {
-        title: "Communicate with the Renter",
+        title: "Reach to The Renter",
         para: "Coordinate with the renter for pick-up and return. After a successful rental.",
       },
     },
@@ -214,5 +214,40 @@ export const about = {
     Based in the heart of Sahara, we take great pride in serving the local community and aspire to be the go-to solution for all your car rental requirements. Our mission is to make car rental accessible, seamless, and cost-effective for everyone in Sahara and beyond.
     `,
     readMore: "Read More",
+  },
+};
+
+export const footerData = {
+  arabic: {
+    companyAddress: "جميع الحقوق محفوظة، محمد علي النعوي",
+    links: {
+      title: "روابط",
+      items: ["من نحن", "وسائل التواصل الاجتماعي", "العدادات", "اتصل بنا"],
+    },
+    company: {
+      title: "الشركة",
+      items: ["الشروط والأحكام", "سياسة الخصوصية", "اتصل بنا"],
+    },
+    contact: {
+      title: "تواصل معنا",
+      items: ["مراكش، شارع 22", "+212613883848", "info@ramo.com"],
+    },
+    copyright: `${new Date().getFullYear()}  جميع الحقوق محفوظة، وكالة صحارى لوكال`,
+  },
+  english: {
+    companyAddress: "Mohamed Ali Naaoui, All Rights Reserved",
+    links: {
+      title: "Links",
+      items: ["About Us", "Social Media", "Counters", "Contact"],
+    },
+    company: {
+      title: "Company",
+      items: ["Terms & Conditions", "Privacy Policy", "Contact"],
+    },
+    contact: {
+      title: "Get in touch",
+      items: ["Marrakech, Street 22", "+212613883848", "info@ramo.com"],
+    },
+    copyright: `${new Date().getFullYear()} Ramo Agency. All rights reserved.`,
   },
 };

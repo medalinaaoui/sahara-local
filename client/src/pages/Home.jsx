@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <main className="px-6 md:px-16  lg:px-40 py-6 pt-16 ">
+      <main className="px-6 md:px-16 lg:px-40 py-6 pt-16 lg:pt-32 ">
         <div
           className={`${
             lang === "arabic" ? "sm:flex-row-reverse flex-col " : ""
@@ -101,7 +101,7 @@ const Home = () => {
               {howToStart[lang].add.addTitle}
             </h4>
             <div
-              className={`flex gap-0  items-center lg:flex-row flex-col ${
+              className={`flex gap-0 justify-center  items-center lg:flex-row flex-col ${
                 lang === "arabic" ? "lg:flex-row-reverse" : ""
               }`}
             >
@@ -112,16 +112,14 @@ const Home = () => {
                 <h5 className="text-lg font-semibold">
                   {howToStart[lang].add.stepOne.title}
                 </h5>
-                <p className="text-sm text-center px-12 lg:px-0 opacity-70">
+                <p className="text-sm w-48 text-center opacity-70  ">
                   {howToStart[lang].add.stepOne.para}
                 </p>
               </div>
               <div
                 className={`${
-                  lang === "arabic"
-                    ? "lg:rotate-180 lg:translate-x-4 "
-                    : "lg:-translate-x-3  lg:mb-28"
-                } lg:rotate-0 rotate-90 ml-64 lg:ml-0 my-6 lg:my-0 translate-x-0  translate-y-0  `}
+                  lang === "arabic" ? "lg:rotate-180 " : "lg:mb-28"
+                } lg:rotate-0 rotate-90 ml-64 lg:ml-0 my-6 lg:my-0`}
               >
                 {firstArrow}
               </div>
@@ -132,7 +130,7 @@ const Home = () => {
                 <h5 className="text-lg font-semibold">
                   {howToStart[lang].add.stepTwo.title}
                 </h5>
-                <p className="text-sm opacity-70 px-12 lg:px-0  text-center">
+                <p className="text-sm opacity-70  w-48  text-center">
                   {howToStart[lang].add.stepTwo.para}
                 </p>
               </div>
@@ -147,10 +145,10 @@ const Home = () => {
                 <span className="text-8xl w-40 aspect-square text-secondary flex justify-center items-center border-2 border-secondary rounded-3xl">
                   <LuPhoneIncoming />
                 </span>
-                <h5 className="text-lg tru text-center font-semibold">
+                <h5 className="text-lg text-center font-semibold">
                   {howToStart[lang].add.stepThree.title}
                 </h5>
-                <p className="text-sm opacity-70  px-12 lg:px-0  text-center">
+                <p className="text-sm opacity-70 w-48 text-center">
                   {howToStart[lang].add.stepThree.para}
                 </p>
               </div>
@@ -159,33 +157,31 @@ const Home = () => {
 
           <ShortAbout />
 
-          <div className="mt-6 flex gap-6 lg:gap-8 flex-col">
-            <h4 className="text-center underline-offset-[17px] underline text-xl lg:text-3xl font-semibold text-accent">
+          <div className="flex gap-6 lg:gap-8 flex-col">
+            <h4 className="text-center   text-xl lg:text-3xl font-semibold text-accent">
               {howToStart[lang].rent.rentTitle}
             </h4>
 
             <div
-              className={`flex gap-2 px-8 mr-2 items-center lg:flex-row flex-col ${
+              className={`flex gap-0 justify-center  items-center lg:flex-row flex-col ${
                 lang === "arabic" ? "lg:flex-row-reverse" : ""
               }`}
             >
-              <div className="flex justify-center flex-col items-center gap-2 lg:gap-4">
+              <div className="flex mb-12 justify-center flex-col items-center gap-2 lg:gap-4">
                 <span className="text-8xl w-40 aspect-square text-secondary flex justify-center items-center border-2 border-secondary rounded-3xl">
                   <FaCar />
                 </span>
                 <h5 className="text-lg font-semibold">
                   {howToStart[lang].rent.stepOne.title}
                 </h5>
-                <p className="text-sm text-center px-12 lg:px-0 opacity-70">
+                <p className="text-sm opacity-70 w-48 text-center">
                   {howToStart[lang].rent.stepOne.para}
                 </p>
               </div>
               <div
                 className={`${
-                  lang === "arabic"
-                    ? "lg:rotate-180 lg:translate-x-1"
-                    : "lg:mb-28 lg:translate-x-4"
-                } lg:rotate-0 rotate-90 ml-64  mr-0 lg:mr-8 translate-x-0 translate-y-0  lg:-translate-y-6  lg:ml-0 my-6 lg:my-0`}
+                  lang === "arabic" ? "lg:rotate-180 " : "lg:mb-28"
+                } lg:rotate-0 rotate-90 ml-64 lg:ml-0 my-6 lg:my-0`}
               >
                 {firstArrow}
               </div>
@@ -196,14 +192,14 @@ const Home = () => {
                 <h5 className="text-lg font-semibold">
                   {howToStart[lang].rent.stepTwo.title}
                 </h5>
-                <p className="text-sm text-center px-12 lg:px-0 opacity-70">
+                <p className="text-sm opacity-70 w-48 text-center">
                   {howToStart[lang].rent.stepTwo.para}
                 </p>
               </div>
               <div
                 className={`${
                   lang === "arabic" ? "lg:rotate-180 lg:mb-28" : ""
-                } lg:rotate-0 ml-0 lg:ml-8 rotate-90 mr-64 lg:mr-0 my-6 lg:my-0 translate-x-0 translate-y-0 lg:-translate-x-2 lg:-translate-y-6`}
+                } lg:rotate-0 rotate-90 mr-64 lg:mr-0 my-6 lg:my-0`}
               >
                 {secondArrow}
               </div>
@@ -214,7 +210,7 @@ const Home = () => {
                 <h5 className="text-lg font-semibold">
                   {howToStart[lang].rent.stepThree.title}
                 </h5>
-                <p className="text-sm text-center px-12 lg:px-0 opacity-70">
+                <p className="text-sm opacity-70 w-48 text-center">
                   {howToStart[lang].rent.stepThree.para}
                 </p>
               </div>
@@ -232,7 +228,7 @@ const Home = () => {
           >
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="shape-fill"
+              className="shape-fill"
             ></path>
           </svg>
         </div>
