@@ -5,7 +5,7 @@ const Footer = () => {
   const lang = useSelector((state) => state.user.language) || "arabic";
 
   return (
-    <footer className="footer-bg text-footerC font-semibold  flex flex-col items-center">
+    <footer className="footer-bg text-white font-semibold  flex flex-col items-center">
       <div className="flex lg:flex-row flex-col lg:justify-around justify-between items-center gap-16 w-full my-16 ">
         <div>
           <h6>Sahara Local</h6>

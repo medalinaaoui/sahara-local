@@ -96,8 +96,8 @@ const Home = () => {
             </h3>
           </div>
 
-          <div className="flex gap-6 lg:gap-8 flex-col">
-            <h4 className="text-center   text-xl lg:text-3xl font-semibold text-accent">
+          <section className="flex gap-6 lg:gap-8 flex-col">
+            <h4 className="text-center   text-xl lg:text-3xl font-extrabold text-accent">
               {howToStart[lang].add.addTitle}
             </h4>
             <div
@@ -153,7 +153,7 @@ const Home = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </section>
 
           <ShortAbout />
 

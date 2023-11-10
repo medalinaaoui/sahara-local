@@ -9,6 +9,7 @@ export default {
         secondary: "#E6492A",
         accent: "#2F4858",
         footerC: "#2D2C2F",
+        bgcolor: "#f5f5f5",
       },
     },
   },
