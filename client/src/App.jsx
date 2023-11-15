@@ -18,7 +18,13 @@ const App = () => {
     {
       path: "/",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <Home />
         </Suspense>
@@ -27,7 +33,13 @@ const App = () => {
     {
       path: "/about",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <About />
         </Suspense>
@@ -36,7 +48,13 @@ const App = () => {
     {
       path: "/vehicles/include",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <ProtectedRoute>
             <IncludeVehicle />
@@ -47,7 +65,13 @@ const App = () => {
     {
       path: "/vehicles/ownlist",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <ProtectedRoute>
             <OwnVehicle />
@@ -58,7 +82,13 @@ const App = () => {
     {
       path: "/vehicles/list",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
 
           <CarsList />
@@ -68,7 +98,13 @@ const App = () => {
     {
       path: "/vehicles/:id",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <ProtectedRoute>
             <VehicleDetails />
@@ -79,7 +115,13 @@ const App = () => {
     {
       path: "/profile",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <ProtectedRoute>
             <Profile />
@@ -90,7 +132,13 @@ const App = () => {
     {
       path: "/login",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar login={true} />
           <Login />
         </Suspense>
@@ -99,7 +147,13 @@ const App = () => {
     {
       path: "/register",
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="h-screen w-screen flex justify-center items-center">
+              <span className="loader"></span>
+            </div>
+          }
+        >
           <Navbar />
           <Register />
         </Suspense>

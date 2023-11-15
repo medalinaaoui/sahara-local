@@ -219,7 +219,7 @@ const Home = () => {
         </div>
       </main>
       <div className="relative">
-        <div className="custom-shape-divider-top-1699386959">
+        <div className="custom-shape-divider-top-1699386959 hidden md:block">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"

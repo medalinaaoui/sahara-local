@@ -31,7 +31,7 @@ const Oauth = ({ text }) => {
     <button
       type="button"
       onClick={handleGoogleClick}
-      className="google-button btn btn-sm py-1 border-none btn-primary w-1/3"
+      className="google-button btn btn-sm py-1 border-none btn-primary w-2/3 sm:w-1/2 lg:w-1/3"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

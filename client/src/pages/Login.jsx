@@ -54,7 +54,7 @@ const Login = () => {
             <input
               className={`${
                 lang === "arabic" ? "text-right" : ""
-              } sm:py-2 py-1 px-1 w-1/3 `}
+              } sm:py-2 py-1 px-1 w-2/3 sm:w-1/2 lg:w-1/3 `}
               onChange={handleChange}
               name="username"
               type="text"
@@ -63,7 +63,7 @@ const Login = () => {
             <input
               className={`${
                 lang === "arabic" ? "text-right" : ""
-              } sm:py-2 py-1 px-1 w-1/3 `}
+              } sm:py-2 py-1 px-1 w-2/3 sm:w-1/2 lg:w-1/3 `}
               onChange={handleChange}
               name="password"
               type="password"
@@ -72,7 +72,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="thebutton btn btn-sm bg-secondary text-white hover:text-secondary w-1/3"
+              className="thebutton btn btn-sm bg-secondary text-white hover:text-secondary w-2/3 sm:w-1/2 lg:w-1/3"
             >
               {loading ? (
                 <span className="loading loading-spinner loading-sm"></span>

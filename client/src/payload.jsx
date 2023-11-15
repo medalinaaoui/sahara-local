@@ -251,3 +251,13 @@ export const footerData = {
     copyright: `${new Date().getFullYear()} Ramo Agency. All rights reserved.`,
   },
 };
+export const carListData = {
+  arabic: {
+    receAdded: "المضافة حديثا",
+    forSale: "للبيع",
+  },
+  english: {
+    receAdded: "Recently posted",
+    forSale: "Cars on sale",
+  },
+};

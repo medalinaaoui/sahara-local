@@ -204,7 +204,7 @@ const Profile = () => {
         <Link
           type="button"
           className="btn btn-sm bg-red-600 hover:bg-red-500 border-none btn-primary w-4/5 sm:w-1/2 lg:w-1/3"
-          to="/vehicles/list"
+          to="/vehicles/ownlist"
         >
           My Vehicles
         </Link>

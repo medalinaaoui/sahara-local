@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className=" z-[100] bg-[#f5f5f5] fixed flex px-2 md:px-16 xl:px-40 py-2  w-full justify-between items-center gap-4 sm:gap-12">
+    <header className=" z-[100] bg-[#f5f5f5] fixed flex px-2 md:px-16 shadow-md xl:px-40 py-2  w-full justify-between items-center gap-4 sm:gap-12">
       <div className="dropdown md:hidden block ">
         <label tabIndex={0} className="btn btn-ghost btn-circle">
           <svg
