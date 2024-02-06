@@ -10,7 +10,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { RiUserAddLine } from "react-icons/ri";
 import { GiCheckMark } from "react-icons/gi";
 import { LuPhoneIncoming, LuPhoneOutgoing } from "react-icons/lu";
-import ShortAbout from "../componats/shortAbout";
+import ShortAbout from "../componats/ShortAbout";
 import Footer from "../componats/Footer";
 import { useNavigate } from "react-router-dom";
 
